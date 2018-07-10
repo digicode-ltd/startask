@@ -3,8 +3,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
 
-group = 'com.github.digicode-ltd'
-version = '0.0.1'
+group = 'com.github.digicode-ltd.startask'
+
+version = '0.0.2'
 
 android {
     compileSdkVersion 28
