@@ -2,9 +2,10 @@ package com.mydigicode.startask
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.mydigicode.startask.utils.IntentUtils
-import com.mydigicode.startask.utils.sendEmail
-import com.mydigicode.startask.utils.shareText
+import android.widget.Toast
+import com.mydigicode.startask.utils.intent.IntentUtils
+import com.mydigicode.startask.utils.intent.OnStartIntentListener
+import com.mydigicode.startask.utils.intent.start
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,31 +16,33 @@ class MainActivity : AppCompatActivity() {
 
         share_btn.setOnClickListener {
 
-            val callback = object : IntentUtils.OnStartListener {
+            val intentBuilder = IntentUtils.getSharingBuilder()
+                    .text("Text")
+                    .subject("Subject")
+                    .chooserTitle("Dialog title")
 
-                override fun onAppNotFound() {
-
-                }
-
-            }
-
-            shareText("Subject", "Message", "Dialog Title", callback)
-
+            IntentUtils.start(this, intentBuilder)
 
         }
 
 
         email_btn.setOnClickListener {
 
-            val callback = object : IntentUtils.OnStartListener {
+            val content = this
 
+            val startIntentListener = object : OnStartIntentListener {
                 override fun onAppNotFound() {
-
+                    Toast.makeText(content, "Not Found!", Toast.LENGTH_SHORT).show()
                 }
-
             }
 
-            sendEmail("ctanok@gmail.com", "subject", "Message", callback)
+            val intentBuilder = IntentUtils.getEmailBuilder()
+                    .toEmail("ctanok@gmail.com")
+                    .subject("Subject")
+                    .text("text")
+                    .startListener(startIntentListener)
+
+            start(intentBuilder)
 
         }
     }

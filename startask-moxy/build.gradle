@@ -33,9 +33,9 @@ ext {
     moxyVersion = '1.5.5'
 }
 
-kapt {
-    generateStubs = true
-}
+//kapt {
+//    generateStubs = true
+//}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

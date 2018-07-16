@@ -29,9 +29,9 @@ android {
 
 }
 
-kapt {
-    generateStubs = true
-}
+//kapt {
+//    generateStubs = true
+//}
 
 ext {
     omegaVersion = '1.1.2'
